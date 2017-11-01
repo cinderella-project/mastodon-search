@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+    body
+        h1 マストドン検索するやつ
+        p jp, nico, pawoo, imastodon, maud.ioに対応
+        form(action="/search")
+            input(name="q",placeholder="スペース区切りでAND検索",value=q)
+            input(type="submit",value="検索")
+        if q
+            h1 「#{q}」の検索結果
+            each toot in toots
+                hr
+                span!= toot.text
+                a(href="https://"+toot.instance+"/@"+toot.screen_name) #{toot.screen_name}@#{toot.instance}
